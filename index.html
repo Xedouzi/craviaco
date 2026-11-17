@@ -28,6 +28,14 @@
 }
 </script>
 <style>
+/* Hallmark · v2.0.0 · redesign: full · theme: brand (CraviAço: azul do logo, Barlow Semi Condensed + IBM Plex Sans) · genre: editorial · job: buy · shape: loja com vitrine por departamento · hero: banner (carrossel na parede de ferramentas) · nav: logo, busca, menu e carrinho · footer: mastro com logo e tres colunas · signature: a chapa perfurada azul com os produtos pendurados · posture: committed · surface: absolute */
+/* Hallmark · pre-emit critique: P4 H4 E4 S5 R4 V4 · weakest: P, loja de catalogo segue o molde do ramo; a chapa perfurada e os produtos recortados dao a cara da casa */
+/* Hallmark · waive 7b · cartao branco puro · as fotos oficiais dos produtos vem no fundo branco puro e o cartao precisa casar com elas */
+/* Hallmark · dismissed 40 · a seta da prateleira apagada e o estado desativado na ponta da fileira, sem acao */
+/* Hallmark · dismissed F4 · os dois botoes brancos ficam em banners diferentes do carrossel, nunca na mesma tela */
+/* Hallmark · answered F2 · as reticencias estao dentro da citacao real de um cliente no Google, mantida como ele escreveu */
+/* Hallmark · answered F15 · loja com muitos componentes: a grade de produtos usa um vao so, os outros vaos sao de formularios e listas */
+/* Hallmark · dropped .lado (cartoes ao lado do banner) · a nota do Google foi para a faixa de fatos e o orcamento da lista segue no menu e na secao propria */
   /* ============================================================
      CRAVIACO FERRAGENS - ferragens e ferramentas em Cravinhos.
      O azul royal do logo nos botoes e nas faixas fortes, o cinza do
@@ -66,11 +74,41 @@
     --largura: 1440px;
     --margem: clamp(16px, 4vw, 40px);
   }
+  /* cores tiradas das regras (Hallmark 48): cada cor passa por um token */
+  :root {
+    --aprovado: #E3F6E8;
+    --azul-luz: #3346C4;
+    --balao: #D9FDD3;
+    --balao-tinta: #12241B;
+    --erro: #B3261E;
+    --estrela: #E8A100;
+    --luz-08: rgba(255, 255, 255, .08);
+    --luz-2: rgba(255, 255, 255, .2);
+    --luz-3: rgba(255, 255, 255, .3);
+    --luz-35: rgba(255, 255, 255, .35);
+    --luz-4: rgba(255, 255, 255, .4);
+    --luz-55: rgba(255, 255, 255, .55);
+    --marca-dagua: #6A7088;
+    --mascara: #000;
+    --rolagem: #9AA2CC;
+    --sombra-azul-2: rgba(10, 22, 112, .2);
+    --sombra-azul-5: rgba(10, 22, 112, .5);
+    --sombra-azul-55: rgba(10, 22, 112, .55);
+    --sombra-chapa-2: rgba(19, 27, 94, .2);
+    --sombra-zap-7: rgba(18, 128, 59, .7);
+    --texto-chapa-2: #E1E5F6;
+    --texto-chapa-3: #B9C0EA;
+    --tinta-vela-25: rgba(18, 23, 51, .25);
+    --zap: #12803B;
+    --zap-2: #0E6A31;
+    --zap-claro: #179A48;
+    --zap-luz: #5BD17F;
+  }
   @font-face { font-family: "Plex reserva"; src: local("Arial"); size-adjust: 102%; }
   @font-face { font-family: "Barlow reserva"; src: local("Arial Narrow Bold"), local("Arial Bold"); size-adjust: 92%; }
   /* ---------- base ---------- */
   *, *::before, *::after { box-sizing: border-box; }
-  html { background: #FFFFFF; scrollbar-color: #9AA2CC #FFFFFF; scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
+  html { overflow-x: clip; background: var(--branco); scrollbar-color: var(--rolagem) var(--branco); scroll-behavior: smooth; scroll-padding-top: 90px; -webkit-text-size-adjust: 100%; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body { overflow-x: clip; margin: 0; background: var(--branco); color: var(--tinta); font: 400 1.0625rem/1.6 var(--fonte); -webkit-tap-highlight-color: transparent; }
   img, svg { max-width: 100%; }
@@ -92,15 +130,15 @@
   .pular:focus { top: 1rem; }
 
   /* movimento padrao: revela ao rolar (uma vez) */
-  .com-js [data-revela] { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-entra) var(--ease-out), transform var(--dur-entra) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
-  .com-js [data-revela].visto { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .com-js [data-revela] { transform: none; transition: opacity .3s ease; transition-delay: 0s; } }
+  .js [data-revela] { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-entra) var(--ease-out), transform var(--dur-entra) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+  .js [data-revela].visto { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .js [data-revela] { transform: none; transition: opacity .3s ease; transition-delay: 0s; } }
 
   /* botoes */
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: .55rem; max-width: 100%;
     min-height: 52px; padding: .75rem 1.4rem; border: 0; border-radius: 12px;
-    background: var(--azul); color: #fff; font: 600 1rem/1.2 var(--fonte); text-decoration: none; text-align: center; cursor: pointer;
+    background: var(--azul); color: var(--branco); font: 600 1rem/1.2 var(--fonte); text-decoration: none; text-align: center; cursor: pointer;
     transition: background-color var(--dur-ui) ease, box-shadow var(--dur-ui) ease, color var(--dur-ui) ease, transform .12s var(--ease-out);
   }
   .btn:hover { background: var(--azul-2); }
@@ -110,8 +148,8 @@
   .btn-branco:hover { background: var(--nevoa); }
   .btn-linha { background: var(--branco); color: var(--tinta); box-shadow: inset 0 0 0 1.5px var(--linha-forte); }
   .btn-linha:hover { background: var(--branco); box-shadow: inset 0 0 0 1.5px var(--tinta); }
-  .btn-zap { background: #12803B; color: #fff; }
-  .btn-zap:hover { background: #0E6A31; }
+  .btn-zap { background: var(--zap); color: var(--branco); }
+  .btn-zap:hover { background: var(--zap-2); }
   @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:active { transform: none; } }
 
   /* ---------- topo ---------- */
@@ -122,14 +160,14 @@
   .menu { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 1.4rem; align-items: center; margin-left: auto; }
   .menu a { color: var(--tinta); text-decoration: none; padding: .55rem 0; white-space: nowrap; font-weight: 500; font-size: .98rem; }
   .menu a:hover { color: var(--azul); text-decoration: underline; }
-  .sacola-botao { position: relative; display: inline-flex; white-space: nowrap; align-items: center; gap: .45rem; flex: none; min-height: 48px; padding: .45rem 1rem; border: 0; border-radius: 12px; background: var(--azul); color: #fff; font: 600 1rem/1 var(--fonte); cursor: pointer; transition: background-color var(--dur-ui) ease; }
+  .sacola-botao { position: relative; display: inline-flex; white-space: nowrap; align-items: center; gap: .45rem; flex: none; min-height: 48px; padding: .45rem 1rem; border: 0; border-radius: 12px; background: var(--azul); color: var(--branco); font: 600 1rem/1 var(--fonte); cursor: pointer; transition: background-color var(--dur-ui) ease; }
   .sacola-botao:hover { background: var(--azul-2); }
   .sacola-botao svg { width: 22px; height: 22px; }
-  .sacola-botao .conta { display: inline-grid; place-items: center; min-width: 1.55rem; height: 1.55rem; padding: 0 .35rem; border-radius: 999px; background: #fff; color: var(--azul); font-size: .82rem; }
+  .sacola-botao .conta { display: inline-grid; place-items: center; min-width: 1.55rem; height: 1.55rem; padding: 0 .35rem; border-radius: 999px; background: var(--branco); color: var(--azul); font-size: .82rem; }
   .menu-botao { display: none; }
   @media (max-width: 60em) {
     .menu-botao {
-      display: grid; align-content: center; justify-items: center; gap: 5px; flex: none; width: 52px; height: 52px; margin-right: -8px; padding: 0;
+      display: grid; align-content: center; justify-items: center; gap: 4px; flex: none; width: 52px; height: 52px; margin-right: -8px; padding: 0;
       border: 0; border-radius: var(--raio); background: none; cursor: pointer;
     }
     .menu-botao span { display: block; width: 28px; height: 4px; border-radius: 4px; background: var(--azul); transition: transform .25s var(--ease-out), opacity .2s; }
@@ -139,7 +177,7 @@
     .menu {
       display: grid; position: absolute; top: 100%; left: 0; right: 0; margin: 0;
       grid-template-columns: minmax(0, 1fr); gap: 0; padding: .5rem var(--margem) 1.25rem;
-      background: var(--branco); border-bottom: 1px solid var(--linha); box-shadow: 0 18px 30px -22px rgba(10, 22, 112, .5);
+      background: var(--branco); border-bottom: 1px solid var(--linha); box-shadow: 0 18px 30px -22px var(--sombra-azul-5);
       opacity: 0; visibility: hidden; transform: translateY(-6px);
       transition: opacity var(--dur-ui) var(--ease-out), transform var(--dur-ui) var(--ease-out), visibility 0s linear var(--dur-ui);
     }
@@ -169,14 +207,14 @@
   /* fotos de produto tem fundo branco: multiply deixa o fundo da cor do banner */
   .destaque-foto img { display: block; width: 100%; max-width: 560px; height: auto; mix-blend-mode: multiply; }
   /* o ultimo banner e a propria loja: agua funda com a fachada de verdade */
-  .destaque-escuro { color: #fff; }
-  .destaque-escuro h2 { color: #fff; }
-  .destaque-escuro .destaque-texto > p { color: #CBD1F2; }
+  .destaque-escuro { color: var(--branco); }
+  .destaque-escuro h2 { color: var(--branco); }
+  .destaque-escuro .destaque-texto > p { color: var(--texto-chapa); }
   /* a foto da loja e em pe: fica por cima da coluna, sem esticar a altura do banner */
   .destaque-escuro .destaque-foto { position: relative; padding: 0; }
   .destaque-escuro .destaque-foto img { position: absolute; inset: 0; width: 100%; }
-  .destaque-escuro .destaque-foto img { max-width: none; height: 100%; object-fit: cover; object-position: 50% 30%; mix-blend-mode: normal; -webkit-mask-image: linear-gradient(90deg, transparent, #000 22%); mask-image: linear-gradient(90deg, transparent, #000 22%); }
-  .destaques .seta { position: absolute; top: 50%; translate: 0 -50%; z-index: 2; box-shadow: 0 6px 18px -8px rgba(10, 22, 112, .5); }
+  .destaque-escuro .destaque-foto img { max-width: none; height: 100%; object-fit: cover; object-position: 50% 30%; mix-blend-mode: normal; -webkit-mask-image: linear-gradient(90deg, transparent, var(--mascara) 22%); mask-image: linear-gradient(90deg, transparent, var(--mascara) 22%); }
+  .destaques .seta { position: absolute; top: 50%; translate: 0 -50%; z-index: 2; box-shadow: 0 6px 18px -8px var(--sombra-azul-5); }
   .destaques .seta-ant { left: .9rem; }
   .destaques .seta-prox { right: .9rem; }
   .destaques .pontos { position: absolute; left: 50%; bottom: .35rem; translate: -50% 0; z-index: 2; }
@@ -186,16 +224,16 @@
   .seta svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .pontos { display: flex; gap: 0; }
   .ponto { width: 36px; height: 40px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
-  .ponto::before { content: ""; width: 26px; height: 10px; border-radius: 999px; background: rgba(18, 23, 51, .25); transform: scaleX(.385); transition: transform var(--dur-ui) var(--ease-out), background-color var(--dur-ui) ease; }
+  .ponto::before { content: ""; width: 26px; height: 10px; border-radius: 999px; background: var(--tinta-vela-25); transform: scaleX(.385); transition: transform var(--dur-ui) var(--ease-out), background-color var(--dur-ui) ease; }
   .ponto[aria-current="true"]::before { transform: none; background: var(--azul); }
-  .no-escuro .ponto::before { background: rgba(255, 255, 255, .4); }
-  .no-escuro .ponto[aria-current="true"]::before { background: #fff; }
+  .no-escuro .ponto::before { background: var(--luz-4); }
+  .no-escuro .ponto[aria-current="true"]::before { background: var(--branco); }
   @media (max-width: 760px) {
     .destaque { grid-template-columns: minmax(0, 1fr); align-items: start; min-height: 0; }
     .destaque-foto { order: -1; aspect-ratio: 6 / 5; padding: 1rem 3.4rem .2rem; }
     .destaque-foto { min-height: 0; overflow: hidden; }
     .destaque-foto img { width: 100%; height: 100%; max-width: none; object-fit: contain; }
-    .destaque-escuro .destaque-foto img { width: 100%; height: 100%; max-height: none; -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); mask-image: linear-gradient(180deg, #000 70%, transparent); }
+    .destaque-escuro .destaque-foto img { width: 100%; height: 100%; max-height: none; -webkit-mask-image: linear-gradient(180deg, var(--mascara) 70%, transparent); mask-image: linear-gradient(180deg, var(--mascara) 70%, transparent); }
     .destaque-texto { padding: .4rem var(--margem) 3.4rem; gap: .7rem; }
     .destaque h2 { font-size: clamp(1.75rem, 1.3rem + 2.4vw, 2.4rem); }
     .destaques .seta { top: calc(50cqw * 5 / 6); width: 42px; height: 42px; }
@@ -212,9 +250,9 @@
     .lado-cartao:active { transform: scale(.98); }
     .lado-cartao strong { color: var(--tinta); font-family: var(--fonte-titulo); font-size: 1.6rem; font-weight: 800; line-height: 1.02; letter-spacing: -.02em; }
     .lado-link { margin-top: .35rem; color: var(--azul); font-weight: 650; text-decoration: underline; text-underline-offset: .2em; }
-    .lado-equip { position: relative; z-index: 0; background: var(--agua); color: #CBD1F2; }
-    .lado-equip strong { color: #fff; max-width: 9em; }
-    .lado-equip .lado-link { color: #fff; }
+    .lado-equip { position: relative; z-index: 0; background: var(--agua); color: var(--texto-chapa); }
+    .lado-equip strong { color: var(--branco); max-width: 9em; }
+    .lado-equip .lado-link { color: var(--branco); }
     .lado-boia { position: absolute; top: 1.2rem; right: 1.6rem; width: 32px; height: auto; transform-origin: 50% 80%; }
     .lado-onda { position: absolute; left: 0; right: 0; top: 58%; z-index: -1; width: 100%; height: 34px; fill: var(--agua-2); }
     .lado-equip > :not(.lado-onda):not(.lado-boia) { position: relative; }
@@ -252,7 +290,6 @@
   .categoria-todos span:first-child { display: grid; place-items: center; background: var(--azul-claro); }
   .categoria-todos svg { width: 46%; height: 46%; fill: none; stroke: var(--azul); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .categoria[aria-pressed="true"] span:first-child { box-shadow: 0 0 0 4px var(--azul); }
-  @media (hover: hover) and (pointer: fine) { .categoria:hover img { transform: scale(1.05); } }
   @media (max-width: 860px) {
     .categorias { display: flex; gap: .9rem; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(var(--margem) * -1); padding: 4px var(--margem) .5rem; scrollbar-width: none; }
     .categorias::-webkit-scrollbar { display: none; }
@@ -276,8 +313,8 @@
   .filtrada .fileira { grid-auto-flow: row; grid-template-columns: repeat(var(--col), minmax(0, 1fr)); grid-auto-rows: 1fr; row-gap: clamp(1.4rem, 3vw, 2rem); overflow: visible; }
   @media (max-width: 1100px) { .fileira { --col: 4; } }
   /* quadro do fim da fileira: agua funda com a boia, do tamanho de um cartao */
-  .fim { position: relative; z-index: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: .55rem; overflow: hidden; min-width: 0; padding: 1.3rem 1.2rem 1.3rem; border-radius: var(--raio); background: var(--agua); color: #CBD1F2; font-size: .93rem; line-height: 1.45; scroll-snap-align: start; }
-  .fim-titulo { color: #fff; font-family: var(--fonte-titulo); font-size: 1.45rem; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
+  .fim { position: relative; z-index: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: .55rem; overflow: hidden; min-width: 0; padding: 1.3rem 1.2rem 1.3rem; border-radius: var(--raio); background: var(--agua); color: var(--texto-chapa); font-size: .93rem; line-height: 1.45; scroll-snap-align: start; }
+  .fim-titulo { color: var(--branco); font-family: var(--fonte-titulo); font-size: 1.45rem; font-weight: 800; line-height: 1.05; letter-spacing: -.02em; }
   .fim .btn { align-self: stretch; min-height: 46px; margin-top: .3rem; padding-inline: .7rem; overflow-wrap: normal; }
   .fim-titulo { padding-right: 1.8rem; }
   @media (max-width: 560px) { .fim { padding: 1rem .85rem; font-size: .88rem; } .fim-titulo { font-size: 1.2rem; } .fim-boia { top: .8rem; right: .8rem; width: 22px; } .fim .btn svg { display: none; } }
@@ -296,8 +333,8 @@
   .produto { display: grid; grid-template-rows: auto 1fr; overflow: hidden; min-width: 0; border-radius: var(--raio); background: var(--branco); box-shadow: 0 0 0 1px var(--linha); }
   .produto-foto { position: relative; display: block; aspect-ratio: 1; background: var(--branco); border-bottom: 1px solid var(--linha); }
   .produto-foto img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .6s var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .produto:hover .produto-foto img { transform: scale(1.04); } }
-  .selo { position: absolute; left: .7rem; top: .7rem; padding: .25rem .65rem; border-radius: 999px; background: var(--boia); color: #fff; font-size: .8rem; font-weight: 650; }
+  @media (hover: hover) and (pointer: fine) { .produto:hover { box-shadow: 0 0 0 1px var(--linha-forte); } }
+  .selo { position: absolute; left: .7rem; top: .7rem; padding: .25rem .65rem; border-radius: 999px; background: var(--boia); color: var(--branco); font-size: .8rem; font-weight: 650; }
   .produto-info { display: flex; flex-direction: column; gap: .35rem; min-width: 0; padding: .85rem .9rem .95rem; }
   .produto-marca { color: var(--azul); font-size: .86rem; font-weight: 650; }
   .produto-nome { margin: 0; font-family: inherit; font-size: 1rem; font-weight: 600; line-height: 1.3; letter-spacing: inherit; }
@@ -308,7 +345,7 @@
   .produto-preco { font-weight: 700; font-size: 1.15rem; }
   .produto-preco small { font-size: .8rem; font-weight: 500; color: var(--tinta-2); }
   .produto .btn { width: 100%; min-height: 46px; padding-inline: .8rem; margin-top: auto; }
-  .btn.adicionado { background: var(--agua); color: #fff; }
+  .btn.adicionado { background: var(--agua); color: var(--branco); }
   @media (max-width: 560px) { .produto-desc { display: none; } .produto-info { padding: .7rem .7rem .8rem; } .produto-nome { font-size: .95rem; } }
 
 
@@ -328,12 +365,12 @@
   .google-nota .estrelas { font-size: 1.25rem; }
   .google-texto { color: var(--tinta-2); }
   .google-nota .btn { margin-top: .6rem; min-height: 48px; }
-  .estrelas { display: inline-flex; gap: 1px; color: #E8A100; }
+  .estrelas { display: inline-flex; gap: 1px; color: var(--estrela); }
   .estrelas svg { width: 1.05em; height: 1.05em; fill: currentColor; }
   .depoimentos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; margin: 0; padding: 0; list-style: none; }
   .depoimentos li { display: flex; flex-direction: column; gap: .75rem; min-width: 0; padding: 1.35rem 1.4rem 1.5rem; border-radius: 20px; background: var(--branco); box-shadow: 0 0 0 1px var(--linha); }
   .dep-autor { display: grid; grid-template-columns: 40px minmax(0, 1fr) 18px; align-items: center; gap: .75rem; }
-  .dep-avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--av); color: #fff; font-size: 1.05rem; font-weight: 600; }
+  .dep-avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--av); color: var(--branco); font-size: 1.05rem; font-weight: 600; }
   .dep-autor p { min-width: 0; line-height: 1.3; }
   .dep-autor strong { display: block; font-weight: 600; }
   .dep-autor p span { color: var(--tinta-2); font-size: .86rem; }
@@ -356,14 +393,14 @@
 
   /* ---------- rodape ---------- */
   .rodape-onda { display: block; background: var(--nevoa); }
-  .rodape { background: var(--agua); color: #CBD1F2; padding: 1.1rem 0 calc(1.1rem + env(safe-area-inset-bottom)); font-size: .92rem; }
+  .rodape { background: var(--agua); color: var(--texto-chapa); padding: 1.1rem 0 calc(1.1rem + env(safe-area-inset-bottom)); font-size: .92rem; }
   .rodape-grade { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem 2.5rem; }
   .rodape-grade > * { min-width: 0; max-width: 100%; }
-  .rodape-marca { display: inline-flex; align-items: center; gap: .8rem; color: #fff; text-decoration: none; }
-  .rodape-marca img { width: 104px; padding: .35rem .6rem; border-radius: 10px; background: #fff; }
-  .rodape a { color: #fff; }
+  .rodape-marca { display: inline-flex; align-items: center; gap: .8rem; color: var(--branco); text-decoration: none; }
+  .rodape-marca img { width: 104px; padding: .35rem .6rem; border-radius: 10px; background: var(--branco); }
+  .rodape a { color: var(--branco); }
   .redes { display: flex; gap: .4rem; }
-  .redes a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255, 255, 255, .08); transition: background-color var(--dur-ui) ease; }
+  .redes a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--luz-08); transition: background-color var(--dur-ui) ease; }
   .redes svg { width: 22px; height: 22px; }
   @media (hover: hover) and (pointer: fine) { .redes a:hover { background: var(--azul); } }
   @media (max-width: 700px) { .rodape-grade { flex-direction: column; align-items: flex-start; gap: .6rem; } }
@@ -376,7 +413,7 @@
   .opcao input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
   .opcao span { display: inline-flex; align-items: center; min-height: 44px; padding: .45rem .95rem; border-radius: 10px; box-shadow: inset 0 0 0 1.5px var(--linha); font-size: .95rem; cursor: pointer; transition: background-color var(--dur-ui) ease, color var(--dur-ui) ease, box-shadow var(--dur-ui) ease; }
   @media (hover: hover) and (pointer: fine) { .opcao:hover span { box-shadow: inset 0 0 0 1.5px var(--linha-forte); } }
-  .opcao input:checked + span { background: var(--agua); color: #fff; box-shadow: none; }
+  .opcao input:checked + span { background: var(--agua); color: var(--branco); box-shadow: none; }
   .opcao input:focus-visible + span { outline: 3px solid var(--azul); outline-offset: 3px; }
   .ver-sacola { padding: 0; border: 0; background: none; color: var(--azul); font: 600 .95rem/1.5 var(--fonte); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
   /* ---------- pagina do produto: endereco proprio (?produto=id); a vitrine sai e a pagina entra ---------- */
@@ -413,21 +450,21 @@
   .pp-status { font-variant-numeric: tabular-nums; min-height: 1.5em; margin-top: -.4rem; font-size: .95rem; }
   .pp-status:empty { display: none; }
   /* como receber: o painel de agua funda, como a faixa do "Monte seu equipamento" */
-  .pp-receber { display: grid; gap: .85rem; margin-top: .4rem; padding: 1.25rem 1.3rem 1.35rem; border-radius: 20px; background: var(--agua); color: #CBD1F2; }
-  .pp-receber h2 { color: #fff; font-size: 1.35rem; letter-spacing: -.01em; }
+  .pp-receber { display: grid; gap: .85rem; margin-top: .4rem; padding: 1.25rem 1.3rem 1.35rem; border-radius: 20px; background: var(--agua); color: var(--texto-chapa); }
+  .pp-receber h2 { color: var(--branco); font-size: 1.35rem; letter-spacing: -.01em; }
   .pp-cep { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; }
-  .pp-cep input { width: 100%; min-width: 0; min-height: 50px; padding: .5rem .95rem; border: 0; border-radius: 12px; background: #fff; color: var(--tinta); font: 400 1rem/1.2 var(--fonte); }
+  .pp-cep input { width: 100%; min-width: 0; min-height: 50px; padding: .5rem .95rem; border: 0; border-radius: 12px; background: var(--branco); color: var(--tinta); font: 400 1rem/1.2 var(--fonte); }
   .pp-cep input:focus-visible { outline-color: var(--laranja-claro); }
   .pp-cep .btn { min-height: 50px; }
-  .pp-cep-res { margin-top: -.2rem; padding: .75rem .9rem; border-radius: 12px; background: var(--agua-2); color: #E1E5F6; font-size: .95rem; }
-  .pp-cep-res strong { color: #fff; }
+  .pp-cep-res { margin-top: -.2rem; padding: .75rem .9rem; border-radius: 12px; background: var(--agua-2); color: var(--texto-chapa-2); font-size: .95rem; }
+  .pp-cep-res strong { color: var(--branco); }
   .pp-cep-res:empty { display: none; }
   .pp-modos { display: grid; gap: .7rem; margin: 0; padding: .3rem 0 0; list-style: none; font-size: .95rem; line-height: 1.4; }
   .pp-modos li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: .75rem; align-items: start; }
   .pp-modos svg { width: 28px; height: 28px; fill: none; stroke: var(--laranja-claro); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-  .pp-modos strong { display: block; color: #fff; font-weight: 600; }
-  .pp-zap { display: inline-flex; align-items: center; gap: .5rem; align-self: start; min-height: 44px; color: #fff; font-weight: 600; text-underline-offset: 3px; }
-  .pp-zap svg { width: 22px; height: 22px; flex: none; color: #5BD17F; }
+  .pp-modos strong { display: block; color: var(--branco); font-weight: 600; }
+  .pp-zap { display: inline-flex; align-items: center; gap: .5rem; align-self: start; min-height: 44px; color: var(--branco); font-weight: 600; text-underline-offset: 3px; }
+  .pp-zap svg { width: 22px; height: 22px; flex: none; color: var(--zap-luz); }
   /* descricao e detalhes em acordeao */
   .pp-sobre { max-width: 54rem; margin-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--linha); }
   .pp-sobre details { border-bottom: 1px solid var(--linha); }
@@ -451,7 +488,7 @@
     .pp-barra {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; display: flex; align-items: center; gap: .9rem;
       padding: .7rem var(--margem) calc(.7rem + env(safe-area-inset-bottom)); background: var(--branco); border-top: 1px solid var(--linha);
-      box-shadow: 0 -12px 28px -20px rgba(10, 22, 112, .5); transform: translateY(105%); transition: transform .3s var(--ease-out);
+      box-shadow: 0 -12px 28px -20px var(--sombra-azul-5); transform: translateY(105%); transition: transform .3s var(--ease-out);
     }
     .pp-barra.visivel { transform: none; }
     .pp-barra strong { font-family: var(--fonte-titulo); font-size: 1.45rem; font-weight: 800; white-space: nowrap; }
@@ -460,7 +497,7 @@
   }
   @media (max-width: 420px) { .pp-cep { grid-template-columns: minmax(0, 1fr); } }
   @media (prefers-reduced-motion: reduce) { .pp-barra, .pp-foto img, .pp-sobre summary::after { transition: none; } }
-  html:has(dialog[open]) { overflow: hidden; }
+  html:has(dialog[open]) { overflow-y: hidden; }
 
   /* ---------- carrinho: gaveta que entra pela direita ---------- */
   .sacola {
@@ -471,7 +508,7 @@
   }
   .sacola[open] { display: flex; flex-direction: column; }
   .sacola.aberta { transform: none; }
-  .sacola::backdrop { background: rgba(10, 22, 112, .55); opacity: 0; transition: opacity .34s ease; }
+  .sacola::backdrop { background: var(--sombra-azul-55); opacity: 0; transition: opacity .34s ease; }
   .sacola.aberta::backdrop { opacity: 1; }
   @media (prefers-reduced-motion: reduce) { .sacola { transform: none; opacity: 0; transition: opacity .2s ease; } .sacola.aberta { opacity: 1; } }
   .sacola-topo { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.3rem; border-bottom: 1px solid var(--linha); }
@@ -481,7 +518,7 @@
   .sacola-corpo { flex: 1; overflow: auto; overscroll-behavior: contain; display: grid; align-content: start; gap: 1.4rem; padding: 1.2rem 1.3rem; }
   .itens { display: grid; gap: 1rem; padding: 0; margin: 0; list-style: none; }
   .item { display: grid; grid-template-columns: 68px minmax(0, 1fr); gap: .35rem .9rem; }
-  .item img { grid-row: span 4; width: 68px; aspect-ratio: 1; object-fit: contain; border-radius: 10px; background: #fff; box-shadow: inset 0 0 0 1px var(--linha); }
+  .item img { grid-row: span 4; width: 68px; aspect-ratio: 1; object-fit: contain; border-radius: 10px; background: var(--branco); box-shadow: inset 0 0 0 1px var(--linha); }
   .item h3 { font: 600 1rem/1.3 var(--fonte); }
   .item-linha { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 0 .6rem; }
   .item-linha .remover { grid-column: 1 / -1; justify-self: start; }
@@ -504,7 +541,7 @@
   .pilulas { display: flex; flex-wrap: wrap; gap: .45rem; }
   .pilula { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: .45rem 1rem; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--linha-forte); cursor: pointer; transition: background-color var(--dur-ui) ease, color var(--dur-ui) ease; }
   .pilula input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
-  .pilula:has(input:checked) { background: var(--agua); color: #fff; box-shadow: none; }
+  .pilula:has(input:checked) { background: var(--agua); color: var(--branco); box-shadow: none; }
   .pilula:has(input:focus-visible), .escolha:has(input:focus-visible) { outline: 3px solid var(--azul); outline-offset: 2px; }
   .pilula:has(input:disabled) { opacity: .4; cursor: not-allowed; }
   .pilula:has(input:disabled) input { cursor: not-allowed; }
@@ -521,13 +558,13 @@
   .aviso { color: var(--tinta-2); font-size: .92rem; }
   .nota { color: var(--tinta-2); font-size: .9rem; }
   .previa-caixa summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; color: var(--azul); }
-  .previa { padding: .9rem 1rem 1.05rem; border-radius: 12px 12px 12px 3px; background: #D9FDD3; color: #12241B; font-size: .95rem; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
+  .previa { padding: .9rem 1rem 1.05rem; border-radius: 12px 12px 12px 3px; background: var(--balao); color: var(--balao-tinta); font-size: .95rem; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
   .sacola-pe { display: grid; gap: .55rem; padding: 1rem 1.3rem max(1.2rem, env(safe-area-inset-bottom)); border-top: 1px solid var(--linha); }
   .sacola-pe .btn { width: 100%; }
   .subtotal { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.05rem; }
   .subtotal strong { font-size: 1.3rem; }
   .sacola-pe p { color: var(--tinta-2); font-size: .88rem; text-align: center; }
-  .sacola-pe .erro { color: #B3261E; font-weight: 600; }
+  .sacola-pe .erro { color: var(--erro); font-weight: 600; }
   /* pagamento simulado: Pix com QR Code, cartao e pedido aprovado */
   .campo-cartao { position: relative; }
   .campo-cartao input { padding-right: 6.5rem; }
@@ -538,22 +575,22 @@
   .pagar h3, .aprovado h3 { font-size: 1.6rem; }
   .pagar > p { max-width: 30ch; color: var(--tinta-2); }
   .pagar .valor { color: var(--tinta); font-size: 1.5rem; font-weight: 700; }
-  .qr { width: 200px; padding: 12px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1.5px var(--linha-forte); }
+  .qr { width: 200px; padding: 12px; border-radius: 16px; background: var(--branco); box-shadow: inset 0 0 0 1.5px var(--linha-forte); }
   .qr svg { display: block; width: 100%; height: auto; }
   .copia { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; width: 100%; }
   .copia input { min-width: 0; min-height: 48px; padding: .6rem .85rem; border: 0; border-radius: 10px; background: var(--nevoa); box-shadow: inset 0 0 0 1.5px var(--linha-forte); color: var(--tinta-2); font: 400 .9rem/1.3 var(--fonte); text-overflow: ellipsis; }
   .copia .btn { min-height: 48px; padding-inline: 1.1rem; }
   .status { display: inline-flex; align-items: center; gap: .55rem; font-weight: 600; }
   .pulso { width: 10px; height: 10px; border-radius: 50%; background: var(--azul); animation: pulso 1.2s ease-in-out infinite; }
-  .status.pago { color: #12803B; }
-  .status.pago .pulso { background: #179A48; animation: none; }
+  .status.pago { color: var(--zap); }
+  .status.pago .pulso { background: var(--zap-claro); animation: none; }
   @keyframes pulso { 50% { opacity: .3; transform: scale(.7); } }
   .girando::before { content: ""; width: 1.1em; height: 1.1em; border: 2.5px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: gira .7s linear infinite; }
   @keyframes gira { to { transform: rotate(1turn); } }
   .btn.girando { gap: .6rem; cursor: progress; }
   .aprovado svg { width: 84px; height: 84px; }
-  .aprovado circle { fill: #E3F6E8; }
-  .aprovado path { fill: none; stroke: #179A48; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: risca .45s .15s var(--ease-out) forwards; }
+  .aprovado circle { fill: var(--aprovado); }
+  .aprovado path { fill: none; stroke: var(--zap-claro); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: risca .45s .15s var(--ease-out) forwards; }
   @keyframes risca { to { stroke-dashoffset: 0; } }
   .aprovado p { max-width: 32ch; color: var(--tinta-2); }
   .aprovado .numero { color: var(--tinta); font-weight: 700; }
@@ -564,12 +601,12 @@
   .flutuante {
     display: grid; place-items: center; position: fixed; z-index: 25;
     right: max(clamp(16px, 2vw, 28px), env(safe-area-inset-right)); bottom: calc(clamp(16px, 2vw, 28px) + env(safe-area-inset-bottom));
-    width: 62px; height: 62px; border-radius: 50%; background: #12803B; color: #fff;
-    box-shadow: 0 10px 28px -10px rgba(18, 128, 59, .7), 0 2px 6px rgba(10, 22, 112, .2);
-    opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .25s var(--ease-out), transform .25s var(--ease-out), background-color .2s;
+    width: 62px; height: 62px; border-radius: 50%; background: var(--zap); color: var(--branco);
+    box-shadow: 0 10px 28px -10px var(--sombra-zap-7), 0 2px 6px var(--sombra-azul-2);
+    transition: opacity .25s var(--ease-out), transform .25s var(--ease-out), background-color .2s;
   }
-  .flutuante.visivel { opacity: 1; transform: none; pointer-events: auto; }
-  .flutuante:hover { background: #0E6A31; }
+  .js .flutuante:not(.visivel) { opacity: 0; transform: translateY(12px); pointer-events: none; }
+  .flutuante:hover { background: var(--zap-2); }
   .flutuante svg { width: 30px; height: 30px; }
   @media (max-width: 600px) { .flutuante { width: 56px; height: 56px; } .flutuante svg { width: 27px; height: 27px; } }
   @media (prefers-reduced-motion: reduce) { .flutuante { transition: none; transform: none; } }
@@ -588,7 +625,7 @@
     background-image: linear-gradient(90deg, var(--tinta-2) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--aco) 1px, transparent 1px), linear-gradient(90deg, var(--aco) 1px, transparent 1px);
     background-size: 100px 11px, 20px 7px, 10px 4px; background-repeat: repeat-x; background-position: 8px 0; }
   .regua-escura { background-color: var(--agua-2); border-bottom: 0;
-    background-image: linear-gradient(90deg, #fff 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(255, 255, 255, .55) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .35) 1px, transparent 1px); }
+    background-image: linear-gradient(90deg, var(--branco) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--luz-55) 1px, transparent 1px), linear-gradient(90deg, var(--luz-35) 1px, transparent 1px); }
 
   /* topo: o logo, a busca, o menu e o carrinho */
   .marca img { width: 158px; height: auto; border-radius: 0; }
@@ -597,18 +634,18 @@
   .busca input { width: 100%; min-width: 0; min-height: 46px; padding: .5rem 3.3rem .5rem 1rem; border: 0; border-radius: var(--raio); background: var(--nevoa); box-shadow: inset 0 0 0 1px var(--linha); color: var(--tinta); font: 400 1rem/1.2 var(--fonte); transition: box-shadow var(--dur-ui) ease, background-color var(--dur-ui) ease; }
   .busca input::placeholder { color: var(--tinta-2); opacity: 1; }
   .busca input:focus { outline: none; background: var(--branco); box-shadow: inset 0 0 0 2px var(--azul); }
-  .busca button { position: absolute; top: 3px; right: 3px; bottom: 3px; display: grid; place-items: center; width: 44px; border: 0; border-radius: 6px; background: var(--azul); color: #fff; cursor: pointer; transition: background-color var(--dur-ui) ease; }
+  .busca button { position: absolute; top: 3px; right: 3px; bottom: 3px; display: grid; place-items: center; width: 44px; border: 0; border-radius: 6px; background: var(--azul); color: var(--branco); cursor: pointer; transition: background-color var(--dur-ui) ease; }
   .busca button:hover { background: var(--azul-2); }
   .busca svg { width: 20px; height: 20px; }
   @media (max-width: 75em) { .topo-grade { flex-wrap: wrap; } .busca { order: 5; flex-basis: 100%; max-width: none; } html { scroll-padding-top: 140px; } .pp-galeria { top: 150px; } }
   @media (max-width: 480px) { .marca img { width: 132px; } }
 
   /* fatos: a faixa azul com a regua embaixo */
-  .faixa-fatos { background: var(--azul); color: #fff; }
+  .faixa-fatos { background: var(--azul); color: var(--branco); }
   .faixa-fatos .fatos { padding: .75rem 0; gap: .5rem 1.5rem; }
-  .faixa-fatos .fato { grid-template-columns: 26px minmax(0, 1fr); gap: .6rem; font-size: .86rem; line-height: 1.3; color: #D5DAF5; }
-  .faixa-fatos .fato svg { width: 26px; height: 26px; stroke: #fff; }
-  .faixa-fatos .fato strong { color: #fff; }
+  .faixa-fatos .fato { grid-template-columns: 26px minmax(0, 1fr); gap: .6rem; font-size: .86rem; line-height: 1.3; color: var(--texto-chapa); }
+  .faixa-fatos .fato svg { width: 26px; height: 26px; stroke: var(--branco); }
+  .faixa-fatos .fato strong { color: var(--branco); }
   @media (max-width: 960px) {
     .faixa-fatos .fatos { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--margem) * -1); padding-inline: var(--margem); }
     .faixa-fatos .fatos::-webkit-scrollbar { display: none; }
@@ -617,14 +654,14 @@
 
   /* banner: titulo em italico como o logo; o preco numa etiqueta inclinada */
   .destaques-trilho { border-radius: var(--raio); }
-  .destaque h2 { font-size: clamp(2.1rem, 1.3rem + 2.8vw, 3.7rem); font-style: italic; font-weight: 800; line-height: .98; letter-spacing: -.015em; }
-  .etiqueta { display: inline-flex; padding: .4rem .95rem; border-radius: 4px; background: var(--azul); color: #fff; transform: skewX(-12deg); }
+  .destaque h2 { font-size: clamp(2.1rem, 1.3rem + 2.8vw, 3.7rem); font-weight: 800; line-height: .98; letter-spacing: -.015em; }
+  .etiqueta { display: inline-flex; padding: .4rem .95rem; border-radius: 4px; background: var(--azul); color: var(--branco); transform: skewX(-12deg); }
   .etiqueta span { display: inline-flex; align-items: baseline; gap: .4rem; font: 500 .95rem/1.2 var(--fonte); transform: skewX(12deg); }
   .etiqueta b { font: italic 800 1.45rem/1 var(--fonte-titulo); }
   .destaques .seta { background: var(--branco); color: var(--azul); box-shadow: inset 0 0 0 1px var(--linha); }
   @media (hover: hover) and (pointer: fine) { .destaques .seta:hover { background: var(--nevoa); } }
-  .destaque-escuro .destaque-texto > p { color: #CDD3F3; }
-  .destaque-escuro .etiqueta { background: #fff; color: var(--tinta); }
+  .destaque-escuro .destaque-texto > p { color: var(--texto-chapa); }
+  .destaque-escuro .etiqueta { background: var(--branco); color: var(--tinta); }
   /* o ultimo banner e a marca: o logo branco sobre o azul fundo, sem foto da loja */
   .destaque-marca .destaque-foto { position: static; padding: 2rem clamp(3.6rem, 6vw, 5rem) 2rem 1rem; }
   .destaque-marca .destaque-foto img { position: static; width: 100%; max-width: 460px; height: auto; object-fit: contain; mix-blend-mode: normal; -webkit-mask-image: none; mask-image: none; }
@@ -635,9 +672,9 @@
 
   /* lado: o orcamento da lista no azul fundo */
   .lado-cartao { border-radius: var(--raio); }
-  .lado-equip { background: var(--agua); color: #CDD3F3; }
-  .lado-equip .lado-link { color: #fff; }
-  .lado-icone { display: block; width: 36px; height: 36px; margin-bottom: .3rem; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .lado-equip { background: var(--agua); color: var(--texto-chapa); }
+  .lado-equip .lado-link { color: var(--branco); }
+  .lado-icone { display: block; width: 36px; height: 36px; margin-bottom: .3rem; fill: none; stroke: var(--branco); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
   /* departamentos: placas retas, a foto em cima e o nome embaixo */
   .categorias { gap: .7rem; }
@@ -652,7 +689,7 @@
   .categoria::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px var(--linha); pointer-events: none; transition: box-shadow var(--dur-ui) ease; }
   .categoria[aria-pressed="true"]::after { box-shadow: inset 0 0 0 2px var(--azul); }
   .categoria[aria-pressed="true"] span:first-child { box-shadow: none; }
-  .categoria[aria-pressed="true"] span:last-child { background: var(--azul); color: #fff; border-top-color: var(--azul); }
+  .categoria[aria-pressed="true"] span:last-child { background: var(--azul); color: var(--branco); border-top-color: var(--azul); }
   @media (hover: hover) and (pointer: fine) { .categoria:hover::after { box-shadow: inset 0 0 0 1px var(--linha-forte); } .categoria[aria-pressed="true"]:hover::after { box-shadow: inset 0 0 0 2px var(--azul); } }
   @media (max-width: 860px) { .categoria { flex: 0 0 136px; } }
 
@@ -673,39 +710,39 @@
 
   /* cartao: selo inclinado laranja, preco grande e a parcela embaixo */
   .produto { border-radius: var(--raio); }
-  .selo { left: .6rem; right: auto; top: .6rem; width: auto; height: auto; padding: .3rem .7rem; border-radius: 4px; background: var(--laranja); color: #fff; font: 700 .78rem/1.1 var(--fonte); transform: skewX(-12deg); }
+  .selo { left: .6rem; right: auto; top: .6rem; width: auto; height: auto; padding: .3rem .7rem; border-radius: 4px; background: var(--laranja); color: var(--branco); font: 700 .78rem/1.1 var(--fonte); transform: skewX(-12deg); }
   .produto-marca { color: var(--tinta-2); font-size: .82rem; font-weight: 600; }
   .produto-preco { margin-top: .15rem; font-family: var(--fonte-titulo); font-size: 1.55rem; font-weight: 700; color: var(--tinta); line-height: 1.05; }
   .produto-preco small { font-family: var(--fonte); font-weight: 500; }
   .produto-parcela { margin-top: -.25rem; color: var(--tinta-2); font-size: .82rem; line-height: 1.35; }
-  .fim { border-radius: var(--raio); background: var(--agua); color: #CDD3F3; }
-  .fim-icone { display: block; width: 30px; height: 30px; margin-bottom: .5rem; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .fim { border-radius: var(--raio); background: var(--agua); color: var(--texto-chapa); }
+  .fim-icone { display: block; width: 30px; height: 30px; margin-bottom: .5rem; fill: none; stroke: var(--branco); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
   .fim-titulo { padding-right: 0; }
   /* o botao do fim cabe com letra grande: sem o icone e com menos folga */
   .fim .btn { padding-inline: .5rem; } .fim .btn svg { display: none; }
   @media (max-width: 420px) { .fim { padding-inline: .6rem; } .fim .btn { font-size: .86rem; padding-inline: .3rem; } }
 
   /* ---------- orcamento da lista: a faixa azul funda ---------- */
-  .orcamento { background: var(--agua); color: #fff; padding-block: clamp(3rem, 7vw, 5.5rem); }
+  .orcamento { background: var(--agua); color: var(--branco); padding-block: clamp(3rem, 7vw, 5.5rem); }
   .orcamento-grade { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
   .orcamento-texto { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.3rem; }
-  .orcamento h2 { color: #fff; font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.4rem); font-style: italic; font-weight: 800; line-height: 1; }
-  .orcamento-texto > p { max-width: 34rem; color: #CDD3F3; font-size: 1.1rem; }
+  .orcamento h2 { color: var(--branco); font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.4rem); font-weight: 800; line-height: 1; }
+  .orcamento-texto > p { max-width: 34rem; color: var(--texto-chapa); font-size: 1.1rem; }
   .campo-escuro { display: grid; grid-template-columns: minmax(0, 1fr); gap: .45rem; min-width: 0; margin: 0; padding: 0; border: 0; font-weight: 600; }
   .campo-escuro legend { padding: 0; margin-bottom: .45rem; }
-  .campo-escuro textarea, .campo-escuro input:not([type="radio"]) { width: 100%; min-width: 0; min-height: 50px; padding: .7rem .9rem; border: 0; border-radius: var(--raio); background: #fff; color: var(--tinta); font: 400 1rem/1.5 var(--fonte); }
+  .campo-escuro textarea, .campo-escuro input:not([type="radio"]) { width: 100%; min-width: 0; min-height: 50px; padding: .7rem .9rem; border: 0; border-radius: var(--raio); background: var(--branco); color: var(--tinta); font: 400 1rem/1.5 var(--fonte); }
   .campo-escuro textarea { min-height: 10.5rem; resize: vertical; }
-  .campo-escuro textarea::placeholder, .campo-escuro input::placeholder { color: #6A7088; opacity: 1; }
+  .campo-escuro textarea::placeholder, .campo-escuro input::placeholder { color: var(--marca-dagua); opacity: 1; }
   .campo-escuro textarea:focus-visible, .campo-escuro input:focus-visible { outline: 3px solid var(--laranja-claro); outline-offset: 2px; }
   .atalhos { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: -.4rem; }
-  .atalho { min-height: 44px; padding: .4rem .85rem; border: 0; border-radius: var(--raio); background: var(--agua-2); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); color: #fff; font: 500 .92rem/1.1 var(--fonte); cursor: pointer; transition: box-shadow var(--dur-ui) ease, transform .12s var(--ease-out); }
-  @media (hover: hover) and (pointer: fine) { .atalho:hover { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .55); } }
+  .atalho { min-height: 44px; padding: .4rem .85rem; border: 0; border-radius: var(--raio); background: var(--agua-2); box-shadow: inset 0 0 0 1px var(--luz-2); color: var(--branco); font: 500 .92rem/1.1 var(--fonte); cursor: pointer; transition: box-shadow var(--dur-ui) ease, transform .12s var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) { .atalho:hover { box-shadow: inset 0 0 0 1px var(--luz-55); } }
   .atalho:active { transform: scale(.97); }
   .atalho:focus-visible { outline-color: var(--laranja-claro); }
   .dupla { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .9rem; align-items: start; }
   .receber-lista .pilulas { gap: .4rem; }
-  .receber-lista .pilula { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35); color: #fff; font-weight: 500; }
-  .receber-lista .pilula:has(input:checked) { background: #fff; color: var(--tinta); box-shadow: none; }
+  .receber-lista .pilula { box-shadow: inset 0 0 0 1px var(--luz-35); color: var(--branco); font-weight: 500; }
+  .receber-lista .pilula:has(input:checked) { background: var(--branco); color: var(--tinta); box-shadow: none; }
   .receber-lista .pilula:has(input:focus-visible) { outline-color: var(--laranja-claro); }
   .lista-cartao { position: sticky; top: 110px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; padding: clamp(1.2rem, 3vw, 1.8rem); border-radius: var(--raio); background: var(--branco); color: var(--tinta); }
   .lista-cabeca { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .2rem 1rem; }
@@ -714,20 +751,20 @@
   .lista-cartao .previa { max-height: 19rem; overflow: auto; }
   .lista-botoes { display: grid; gap: .55rem; }
   .lista-botoes .btn { width: 100%; }
-  .lista-aviso { color: #B3261E; font-size: .95rem; font-weight: 600; }
+  .lista-aviso { color: var(--erro); font-size: .95rem; font-weight: 600; }
   .lista-aviso:empty { display: none; }
   .lista-nota { color: var(--tinta-2); font-size: .88rem; }
   @media (max-width: 900px) { .orcamento-grade { grid-template-columns: minmax(0, 1fr); } .lista-cartao { position: static; } }
   @media (max-width: 560px) { .dupla { grid-template-columns: minmax(0, 1fr); } }
 
   /* ---------- a loja: o painel azul com o logo e os numeros ---------- */
-  .loja-painel { position: relative; display: grid; gap: clamp(1.6rem, 4vw, 2.4rem); overflow: hidden; padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.4rem, 4vw, 2.6rem) calc(clamp(1.8rem, 4vw, 2.6rem) + 16px); border-radius: var(--raio); background: radial-gradient(120% 90% at 25% 0%, #3346C4 0%, transparent 60%), var(--azul); color: #fff; }
+  .loja-painel { position: relative; display: grid; gap: clamp(1.6rem, 4vw, 2.4rem); overflow: hidden; padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.4rem, 4vw, 2.6rem) calc(clamp(1.8rem, 4vw, 2.6rem) + 16px); border-radius: var(--raio); background: radial-gradient(120% 90% at 25% 0%, var(--azul-luz) 0%, transparent 60%), var(--azul); color: var(--branco); }
   .loja-painel > img { width: min(100%, 340px); height: auto; }
   .loja-painel .regua-faixa { position: absolute; left: 0; right: 0; bottom: 0; }
   .loja-numeros { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
-  .loja-numeros li { display: grid; gap: .2rem; padding-top: .8rem; border-top: 1px solid rgba(255, 255, 255, .3); }
-  .loja-numeros b { font: italic 800 clamp(1.7rem, 1.3rem + 1.2vw, 2.3rem)/1 var(--fonte-titulo); }
-  .loja-numeros span { color: #D5DAF5; font-size: .9rem; line-height: 1.35; }
+  .loja-numeros li { display: grid; gap: .2rem; padding-top: .8rem; border-top: 1px solid var(--luz-3); }
+  .loja-numeros b { font: 800 clamp(1.7rem, 1.3rem + 1.2vw, 2.3rem)/1 var(--fonte-titulo); font-variant-numeric: tabular-nums; }
+  .loja-numeros span { color: var(--texto-chapa); font-size: .9rem; line-height: 1.35; font-variant-numeric: tabular-nums; }
   @media (max-width: 420px) { .loja-numeros { grid-template-columns: minmax(0, 1fr); } .loja-numeros li { grid-template-columns: 5.5rem minmax(0, 1fr); align-items: baseline; } }
   .loja-texto > p + p { margin-top: -.2rem; }
   .google-nota, .depoimentos li, .chegar { border-radius: var(--raio); }
@@ -737,7 +774,7 @@
   /* pagina do produto e carrinho */
   .pp-foto, .pp-receber, .sacola-topo .fechar { border-radius: var(--raio); }
   .pp-receber { background: var(--agua); }
-  .pp-cep-res small { display: block; margin-top: .3rem; color: #B9C0EA; font-size: .82rem; }
+  .pp-cep-res small { display: block; margin-top: .3rem; color: var(--texto-chapa-3); font-size: .82rem; }
   .frete-linha { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; color: var(--tinta-2); font-size: .95rem; }
   .frete-linha strong { color: var(--tinta); font-weight: 600; white-space: nowrap; }
 
@@ -745,10 +782,117 @@
   .rodape-marca img { width: 150px; padding: 0; border-radius: 0; background: none; }
 
   /* WhatsApp: so o icone redondo no canto */
-  .flutuante { background: #179A48; box-shadow: 0 10px 28px -10px rgba(23, 154, 72, .7), 0 2px 6px rgba(19, 27, 94, .2); }
-  .flutuante:hover { background: #12803B; }
+  .flutuante { background: var(--zap-claro); box-shadow: 0 10px 28px -10px var(--sombra-zap-7), 0 2px 6px var(--sombra-chapa-2); }
+  .flutuante:hover { background: var(--zap); }
+
+  /* ============================================================
+     REDESENHO 16/11 (Hallmark): a PAREDE DE FERRAMENTAS.
+     A chapa perfurada azul de toda loja de ferragens: os produtos
+     ficam pendurados nela na abertura e nas cabeceiras das prateleiras.
+     ============================================================ */
+  :root {
+    --chapa:      #16206A;   /* a chapa: o azul do logo no escuro */
+    --chapa-2:    #0F1655;
+    --furo:       rgba(4, 7, 38, .62);
+    --furo-luz:   rgba(255, 255, 255, .08);
+    --vidro:      rgba(255, 255, 255, .12);
+    --vidro-2:    rgba(255, 255, 255, .24);
+    --texto-chapa: #CDD3F3;  /* texto corrido sobre a chapa: 9:1 */
+    --av-azul: #1A73E8;      /* as bolinhas das avaliacoes, como no Google */
+    --av-verde: #0B8043;
+    --sombra-peca: rgba(3, 6, 32, .55);
+    --sombra-peca-2: rgba(3, 6, 32, .35);
+    --chapa-furos: radial-gradient(circle at 50% 50%, var(--furo) 0 2.4px, var(--furo-luz) 2.9px 3.4px, transparent 3.8px), linear-gradient(180deg, var(--chapa) 0%, var(--chapa-2) 100%);
+    --passo-furo: 26px;
+  }
+
+  /* abertura: a parede de ponta a ponta, os banners em cima dela */
+  .destaques-secao { padding: 0; background-color: var(--chapa); background-image: var(--chapa-furos); background-size: var(--passo-furo) var(--passo-furo), 100% 100%; background-position: calc(var(--passo-furo) / 2) calc(var(--passo-furo) / 2), 0 0; color: var(--branco); }
+  .destaques-secao .abertura { display: block; }
+  .destaques-secao .lado { display: none; }
+  .destaques-trilho { border-radius: 0; }
+  .destaque { background: none; min-height: clamp(440px, 36vw, 540px); grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); }
+  .destaque-texto { gap: 1.1rem; padding: clamp(2.5rem, 5vw, 4rem) 1rem clamp(3.8rem, 5vw, 4.4rem) clamp(3.8rem, 5vw, 4.8rem); }
+  .destaque h2 { max-width: 9.5em; color: var(--branco); font-size: clamp(2.3rem, 1.3rem + 3vw, 4.3rem); font-style: normal; font-weight: 800; line-height: .95; letter-spacing: -.02em; }
+  .destaque-texto > p, .destaque-escuro .destaque-texto > p { max-width: 26rem; color: var(--texto-chapa); }
+  .destaque .etiqueta { background: var(--laranja); color: var(--branco); }
+  .parede { position: relative; align-self: stretch; margin: clamp(1.5rem, 3vw, 2.5rem) clamp(3.8rem, 5vw, 4.8rem) clamp(2.5rem, 4vw, 3.2rem) 0; padding: 0; }
+  .parede .peca { position: absolute; left: var(--x); top: var(--y); z-index: var(--z); width: auto; max-width: none; height: var(--h); mix-blend-mode: normal; rotate: var(--r); filter: drop-shadow(0 22px 18px var(--sombra-peca)) drop-shadow(0 4px 4px var(--sombra-peca-2)); }
+  .destaque-marca .destaque-foto img { filter: drop-shadow(0 18px 22px var(--sombra-peca)); }
+  .destaques .seta { background: var(--agua-2); color: var(--branco); box-shadow: inset 0 0 0 1px var(--vidro-2); }
+  @media (hover: hover) and (pointer: fine) { .destaques .seta:hover { background: var(--azul); } }
+  .destaques .ponto::before { background: var(--vidro-2); }
+  .destaques .ponto[aria-current="true"]::before { background: var(--branco); }
+  @media (max-width: 760px) {
+    .destaque { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+    .parede { margin: 1.2rem var(--margem) 0; aspect-ratio: 6 / 5; }
+    .destaque-texto { padding: .6rem var(--margem) 3.6rem; }
+    .destaque h2 { font-size: clamp(2rem, 1.4rem + 3vw, 2.7rem); }
+  }
+
+  /* fatos: faixa branca logo abaixo da parede, cinco fatos lado a lado */
+  :root {
+    --furo-claro: #CBD0DF;
+    --sombra-clara: rgba(19, 27, 94, .22);
+    --chapa-clara-furos: radial-gradient(circle at 50% 50%, var(--furo-claro) 0 2.2px, transparent 2.8px), linear-gradient(180deg, var(--nevoa) 0%, var(--aco-claro) 100%);
+  }
+  .faixa-fatos { background: var(--branco); color: var(--tinta); border-bottom: 1px solid var(--linha); }
+  .faixa-fatos .fatos { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem 1.5rem; padding: 1.15rem 0; }
+  .faixa-fatos .fato { grid-template-columns: 30px minmax(0, 1fr); gap: .7rem; color: var(--tinta-2); font-size: .9rem; line-height: 1.35; }
+  .faixa-fatos .fato svg { width: 30px; height: 30px; stroke: var(--azul); }
+  .faixa-fatos .fato strong { color: var(--tinta); }
+  .faixa-fatos .fato-google { grid-template-columns: minmax(0, 1fr); }
+  .fato-google a { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: .7rem; align-items: center; min-height: 44px; color: inherit; text-decoration: none; }
+  .faixa-fatos .fato-google svg { width: 26px; height: 26px; justify-self: center; }
+  @media (hover: hover) and (pointer: fine) { .fato-google a:hover strong { color: var(--azul); text-decoration: underline; text-underline-offset: 3px; } }
+  @media (max-width: 1100px) and (min-width: 961px) { .faixa-fatos .fatos { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  /* departamentos: o produto pendurado numa chapa clara, o nome embaixo */
+  .categoria span:first-child { background-color: var(--nevoa); background-image: var(--chapa-clara-furos); background-size: 22px 22px, 100% 100%; background-position: 11px 11px, 0 0; }
+  .categoria img { padding: 12% 14%; filter: drop-shadow(0 10px 9px var(--sombra-clara)); }
+  .categoria-todos span:first-child { background-image: none; background-color: var(--azul-claro); }
+
+  /* prateleira: a cabeceira (a chapa com os produtos do departamento) abre a fileira no computador */
+  .fim { justify-content: stretch; gap: 0; padding: 0; background-color: var(--chapa); background-image: var(--chapa-furos); background-size: 22px 22px, 100% 100%; background-position: 11px 11px, 0 0; color: var(--texto-chapa); }
+  .fim-parede { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6%; min-height: 9rem; padding: 1.5rem 1rem .5rem; }
+  .fim-parede img { flex: 0 1 auto; min-width: 0; max-width: 46%; width: auto; height: clamp(7.5rem, 10vw, 11.5rem); object-fit: contain; filter: drop-shadow(0 16px 14px var(--sombra-peca)) drop-shadow(0 3px 3px var(--sombra-peca-2)); }
+  .fim:not([data-falta]) .fim-parede img:nth-child(n+2), .fim[data-falta="1"] .fim-parede img:nth-child(n+3) { display: none; }
+  .fim:not([data-falta]) .fim-parede img { max-width: 88%; }
+  .fim-texto { display: grid; gap: .55rem; padding: 0 1.2rem 1.3rem; }
+  .fim-texto .btn { margin-top: .3rem; }
+  @media (min-width: 1101px) {
+    .fileira .fim { order: -1; }
+    .fileira .fim[data-falta] { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: end; }
+    .fileira .fim[data-falta] .fim-parede { order: 2; align-self: stretch; padding: 1.6rem 1.4rem 1.6rem 0; }
+    .fileira .fim[data-falta] .fim-texto { padding: 1.6rem 1.2rem 1.6rem 1.6rem; }
+    .fileira .fim[data-falta] .fim-titulo { font-size: clamp(1.6rem, 1.1rem + 1vw, 2.1rem); }
+    .fileira .fim[data-falta] .btn { justify-self: start; padding-inline: 1.4rem; }
+    .fileira .fim[data-falta] .btn svg { display: block; }
+    .fileira .fim[data-falta] .fim-parede img { height: clamp(9rem, 13vw, 14rem); }
+  }
+  @media (max-width: 560px) { .fim-texto { padding: 0 .85rem 1rem; } .fim-parede { padding: 1rem .6rem .3rem; } }
+
+  /* orcamento, painel da loja e rodape: a mesma chapa da abertura; titulos retos */
+  .orcamento, .loja-painel, .rodape { background-color: var(--chapa); background-image: var(--chapa-furos); background-size: var(--passo-furo) var(--passo-furo), 100% 100%; background-position: calc(var(--passo-furo) / 2) calc(var(--passo-furo) / 2), 0 0; }
+  .orcamento h2 { font-style: normal; letter-spacing: -.02em; }
+  .etiqueta b { font-style: normal; }
+  .atalho { background: var(--vidro); box-shadow: inset 0 0 0 1px var(--vidro-2); }
+  /* rodape: o logo e tres colunas; a regua fica em cima */
+  .rodape { padding: clamp(2.8rem, 6vw, 4rem) 0 0; color: var(--texto-chapa); font-size: .95rem; }
+  .rodape-grade { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 2rem clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  .rodape-coluna { display: grid; gap: .8rem; min-width: 0; }
+  .rodape-casa p { max-width: 22rem; line-height: 1.5; }
+  .rodape-marca img { width: 190px; }
+  .rodape h2 { color: var(--branco); font-size: 1.2rem; letter-spacing: -.01em; }
+  .rodape ul { display: grid; gap: .15rem; margin: 0; padding: 0; list-style: none; line-height: 1.45; }
+  .rodape ul li { padding-block: .35rem; }
+  .rodape ul a { display: inline-flex; align-items: center; min-height: 32px; color: var(--branco); text-decoration: none; }
+  @media (hover: hover) and (pointer: fine) { .rodape ul a:hover { text-decoration: underline; text-underline-offset: 3px; } }
+  .rodape-fim { margin-top: clamp(2.2rem, 5vw, 3rem); padding-block: 1.1rem calc(1.1rem + env(safe-area-inset-bottom)); border-top: 1px solid var(--vidro-2); font-size: .88rem; }
+  @media (max-width: 960px) { .rodape-grade { grid-template-columns: repeat(2, minmax(0, 1fr)); } .rodape-casa { grid-column: 1 / -1; } }
+  @media (max-width: 520px) { .rodape-grade { grid-template-columns: minmax(0, 1fr); } .rodape ul a { min-height: 44px; } .rodape ul li { padding-block: 0; } }
 </style>
-<script>document.documentElement.classList.add("com-js");</script>
+<script>document.documentElement.classList.add("js");</script>
 <script>
 /* janela aberta com mouse ou dedo: ao fechar, o foco volta ao link ou botao sem a moldura de selecao;
    quem navega pelo teclado (Tab/Enter) continua vendo onde esta */
@@ -813,50 +957,40 @@
   </div>
 </header>
 
-<div class="faixa-fatos">
-  <div class="envoltorio">
-    <ul class="fatos">
-      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 9h16v13H3zM19 13h5l4 5v4h-9"/><circle cx="8" cy="24" r="2.5"/><circle cx="23" cy="24" r="2.5"/></svg><span><strong>Envio para todo o Brasil</strong>Despachamos em até 24 horas úteis</span></li>
-      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 13 6 6h20l2 7M4 13h24M4 13v13h24V13M12 26v-7h8v7"/></svg><span><strong>Retire na loja, sem frete</strong>R. Manoel Gomes dos Santos, 1095</span></li>
-      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="3"/><path d="M4 13h24M9 19h5"/></svg><span><strong>Pix ou cartão</strong>Em até 10x sem juros</span></li>
-      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4a12 12 0 0 0-10.3 18.1L4 28l6-1.6A12 12 0 1 0 16 4Z"/></svg><span><strong>Dúvidas pelo WhatsApp</strong>Atendimento de quem entende do assunto</span></li>
-    </ul>
-  </div>
-</div>
-<span class="regua-faixa" aria-hidden="true"></span>
+
 
 <section class="destaques-secao" aria-labelledby="titulo">
   <div class="envoltorio abertura">
     <h1 class="so-leitor" id="titulo">CraviAço Ferragens: ferramentas, máquinas e ferragens em Cravinhos, com envio para todo o Brasil</h1>
     <div class="destaques" id="destaques-caixa" role="region" aria-roledescription="carrossel" aria-label="Destaques da loja">
       <ul class="destaques-trilho" id="destaques">
-        <li class="destaque" style="--cor:#E9ECF8" aria-roledescription="destaque" aria-label="1 de 4">
+        <li class="destaque" aria-roledescription="destaque" aria-label="1 de 4">
           <div class="destaque-texto">
             <h2>Ferramentas elétricas para obra e oficina</h2>
             <p>DeWalt, Titanium e Chiaperini: furadeiras, serras, lixadeiras e policortes, em 127 V ou 220 V.</p>
             <span class="etiqueta"><span>a partir de <b>R$ 129,90</b></span></span>
-            <button class="btn" type="button" data-ir="eletricas">Ver as ferramentas elétricas</button>
+            <button class="btn btn-branco" type="button" data-ir="eletricas">Ver as elétricas</button>
           </div>
-          <div class="destaque-foto"><img src="img/banner-eletricas.webp" width="1200" height="900" alt="Policorte DeWalt, serra tico-tico DeWalt e furadeira de impacto Titanium" fetchpriority="high"></div>
+          <div class="destaque-foto parede" role="img" aria-label="Policorte DeWalt, furadeira de impacto Titanium, serra tico-tico DeWalt e lixadeira Chiaperini"><img class="peca" src="img/recorte/policorte.webp" alt="" fetchpriority="high" style="--x:6%;--y:28%;--h:70%;--r:0deg;--z:3"><img class="peca" src="img/recorte/furadeira.webp" alt="" loading="lazy" style="--x:44%;--y:2%;--h:40%;--r:-6deg;--z:2"><img class="peca" src="img/recorte/ticotico.webp" alt="" loading="lazy" style="--x:54%;--y:52%;--h:42%;--r:0deg;--z:4"><img class="peca" src="img/recorte/lixadeira.webp" alt="" loading="lazy" style="--x:4%;--y:6%;--h:26%;--r:0deg;--z:1"></div>
         </li>
-        <li class="destaque" style="--cor:#EEF0F3" aria-roledescription="destaque" aria-label="2 de 4">
+        <li class="destaque" aria-roledescription="destaque" aria-label="2 de 4">
           <div class="destaque-texto">
             <h2>Régua Multi Ângulos CraviAço</h2>
             <p>A régua da nossa linha própria: copia qualquer ângulo e marca o corte de pisos, azulejos, rodapés e madeira.</p>
             <span class="etiqueta"><span>por <b>R$ 69,90</b></span></span>
-            <button class="btn" type="button" data-produto="regua">Conhecer a régua</button>
+            <button class="btn btn-branco" type="button" data-produto="regua">Conhecer a régua</button>
           </div>
-          <div class="destaque-foto"><img src="img/banner-regua.webp" width="1200" height="900" alt="Régua Multi Ângulos aberta" loading="lazy"></div>
+          <div class="destaque-foto parede" role="img" aria-label="Régua Multi Ângulos CraviAço aberta"><img class="peca" src="img/recorte/regua.webp" alt="" loading="lazy" style="--x:22%;--y:4%;--h:92%;--r:-8deg;--z:1"></div>
         </li>
-        <li class="destaque" style="--cor:#FFF1E6" aria-roledescription="destaque" aria-label="3 de 4">
+        <li class="destaque" aria-roledescription="destaque" aria-label="3 de 4">
           <div class="destaque-texto">
             <h2>Máquinas a gasolina</h2>
             <p>Lavadoras de alta pressão Toyama, motores estacionários Buffalo e roçadeiras para o campo e a obra.</p>
-            <button class="btn" type="button" data-ir="maquinas">Ver as máquinas</button>
+            <button class="btn btn-branco" type="button" data-ir="maquinas">Ver as máquinas</button>
           </div>
-          <div class="destaque-foto"><img src="img/banner-maquinas.webp" width="1200" height="900" alt="Lavadora de alta pressão Toyama e motor estacionário Buffalo" loading="lazy"></div>
+          <div class="destaque-foto parede" role="img" aria-label="Lavadora de alta pressão Toyama, roçadeira Branco e motor estacionário Buffalo"><img class="peca" src="img/recorte/lavadora.webp" alt="" loading="lazy" style="--x:4%;--y:6%;--h:88%;--r:0deg;--z:2"><img class="peca" src="img/recorte/rocadeira.webp" alt="" loading="lazy" style="--x:36%;--y:8%;--h:64%;--r:16deg;--z:1"><img class="peca" src="img/recorte/motor.webp" alt="" loading="lazy" style="--x:52%;--y:38%;--h:60%;--r:0deg;--z:3"></div>
         </li>
-        <li class="destaque destaque-escuro destaque-marca" style="--cor:#131B5E" aria-roledescription="destaque" aria-label="4 de 4">
+        <li class="destaque destaque-marca" aria-roledescription="destaque" aria-label="4 de 4">
           <div class="destaque-texto">
             <h2>Enviamos para todo o Brasil</h2>
             <p>Compre pelo site e receba em casa, ou retire na loja em Cravinhos sem pagar frete. Despachamos em até 24 horas úteis.</p>
@@ -885,6 +1019,18 @@
     </div>
   </div>
 </section>
+<span class="regua-faixa" aria-hidden="true"></span>
+<div class="faixa-fatos">
+  <div class="envoltorio">
+    <ul class="fatos">
+      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 9h16v13H3zM19 13h5l4 5v4h-9"/><circle cx="8" cy="24" r="2.5"/><circle cx="23" cy="24" r="2.5"/></svg><span><strong>Envio para todo o Brasil</strong>Despachamos em até 24 horas úteis</span></li>
+      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 13 6 6h20l2 7M4 13h24M4 13v13h24V13M12 26v-7h8v7"/></svg><span><strong>Retire na loja, sem frete</strong>R. Manoel Gomes dos Santos, 1095</span></li>
+      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="3"/><path d="M4 13h24M9 19h5"/></svg><span><strong>Pix ou cartão</strong>Em até 10x sem juros</span></li>
+      <li class="fato"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4a12 12 0 0 0-10.3 18.1L4 28l6-1.6A12 12 0 1 0 16 4Z"/></svg><span><strong>Dúvidas pelo WhatsApp</strong>Atendimento de quem entende do assunto</span></li>
+      <li class="fato fato-google"><a href="#avaliacoes"><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8a10 10 0 0 1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7A22 22 0 0 0 24 46z"/><path fill="#FBBC05" d="M11.8 28.3a13.2 13.2 0 0 1 0-8.6v-5.7H4.5a22 22 0 0 0 0 20z"/><path fill="#EA4335" d="M24 10.7c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3A22 22 0 0 0 4.5 14l7.3 5.7c1.7-5.2 6.5-9 12.2-9z"/></svg><span><strong>5,0 no Google</strong>Nota máxima nas avaliações</span></a></li>
+    </ul>
+  </div>
+</div>
 
 <main id="conteudo">
   <section class="secao secao-nevoa" id="produtos" aria-labelledby="titulo-produtos">
@@ -969,12 +1115,12 @@
       </div>
       <ul class="depoimentos" data-revela style="--i:1">
           <li>
-            <div class="dep-autor"><span class="dep-avatar" style="--av:#1A73E8" aria-hidden="true">R</span><p><strong>Rubens Chinaglia</strong><span>julho de 2026</span></p><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8a10 10 0 0 1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7A22 22 0 0 0 24 46z"/><path fill="#FBBC05" d="M11.8 28.3a13.2 13.2 0 0 1 0-8.6v-5.7H4.5a22 22 0 0 0 0 20z"/><path fill="#EA4335" d="M24 10.7c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3A22 22 0 0 0 4.5 14l7.3 5.7c1.7-5.2 6.5-9 12.2-9z"/></svg></div>
+            <div class="dep-autor"><span class="dep-avatar" style="--av:var(--av-azul)" aria-hidden="true">R</span><p><strong>Rubens Chinaglia</strong><span>julho de 2026</span></p><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8a10 10 0 0 1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7A22 22 0 0 0 24 46z"/><path fill="#FBBC05" d="M11.8 28.3a13.2 13.2 0 0 1 0-8.6v-5.7H4.5a22 22 0 0 0 0 20z"/><path fill="#EA4335" d="M24 10.7c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3A22 22 0 0 0 4.5 14l7.3 5.7c1.7-5.2 6.5-9 12.2-9z"/></svg></div>
             <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg></span>
             <blockquote>“Lugar muito bom para se comprar materiais diversos: ferragens, ferramentas, estacionamento fácil... recomendo.”</blockquote>
           </li>
           <li>
-            <div class="dep-autor"><span class="dep-avatar" style="--av:#0B8043" aria-hidden="true">M</span><p><strong>Mauro Albino Barbosa</strong><span>maio de 2026</span></p><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8a10 10 0 0 1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7A22 22 0 0 0 24 46z"/><path fill="#FBBC05" d="M11.8 28.3a13.2 13.2 0 0 1 0-8.6v-5.7H4.5a22 22 0 0 0 0 20z"/><path fill="#EA4335" d="M24 10.7c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3A22 22 0 0 0 4.5 14l7.3 5.7c1.7-5.2 6.5-9 12.2-9z"/></svg></div>
+            <div class="dep-autor"><span class="dep-avatar" style="--av:var(--av-verde)" aria-hidden="true">M</span><p><strong>Mauro Albino Barbosa</strong><span>maio de 2026</span></p><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h11.8a10 10 0 0 1-4.4 6.6v5.5h7.1c4.2-3.8 6.6-9.5 6.6-16.1z"/><path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7A22 22 0 0 0 24 46z"/><path fill="#FBBC05" d="M11.8 28.3a13.2 13.2 0 0 1 0-8.6v-5.7H4.5a22 22 0 0 0 0 20z"/><path fill="#EA4335" d="M24 10.7c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3A22 22 0 0 0 4.5 14l7.3 5.7c1.7-5.2 6.5-9 12.2-9z"/></svg></div>
             <span class="estrelas" role="img" aria-label="5 de 5 estrelas"><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg><svg aria-hidden="true"><use href="#i-estrela"/></svg></span>
             <blockquote>“Produtos de primeira, você encontra ali.”</blockquote>
           </li>
@@ -1002,14 +1148,45 @@
 <span class="regua-faixa regua-escura" aria-hidden="true"></span>
 <footer class="rodape">
   <div class="envoltorio rodape-grade">
-    <a class="rodape-marca" href="#" translate="no">
-      <img src="img/marca/logo-branco.png" width="772" height="160" alt="CraviAço">
-      <span>Ferragens e ferramentas em Cravinhos (SP)</span>
-    </a>
-    <p class="redes">
-      <a href="https://www.instagram.com/craviaco" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
-    </p>
+    <div class="rodape-coluna rodape-casa">
+      <a class="rodape-marca" href="#" translate="no">
+        <img src="img/marca/logo-branco.png" width="772" height="160" alt="CraviAço">
+      </a>
+      <p>Ferragens e ferramentas em Cravinhos (SP). Atendemos no balcão e enviamos para todo o Brasil.</p>
+      <p class="redes">
+        <a href="https://www.instagram.com/craviaco" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-instagram"/></svg></a>
+      </p>
+    </div>
+    <nav class="rodape-coluna" aria-label="Departamentos">
+      <h2>Departamentos</h2>
+      <ul>
+        <li><a href="#produtos" data-ir="eletricas">Ferramentas elétricas</a></li>
+        <li><a href="#produtos" data-ir="manuais">Ferramentas manuais</a></li>
+        <li><a href="#produtos" data-ir="maquinas">Máquinas e jardinagem</a></li>
+        <li><a href="#produtos" data-ir="solda">Solda e pintura</a></li>
+        <li><a href="#produtos" data-ir="obra">Hidráulica e construção</a></li>
+        <li><a href="#produtos" data-ir="automotivo">Automotivo e oficina</a></li>
+      </ul>
+    </nav>
+    <div class="rodape-coluna">
+      <h2>Atendimento</h2>
+      <ul>
+        <li>R. Manoel Gomes dos Santos, 1095, Cravinhos (SP)</li>
+        <li><a href="tel:+551634821733">(16) 3482-1733</a></li>
+        <li><a href="#orcamento">Orçamento da lista</a></li>
+        <li><a href="#chegar">Como chegar</a></li>
+      </ul>
+    </div>
+    <div class="rodape-coluna">
+      <h2>Pagamento e envio</h2>
+      <ul>
+        <li>Pix ou cartão em até 10x sem juros</li>
+        <li>Envio para todo o Brasil em até 24 horas úteis</li>
+        <li>Retirada na loja sem frete</li>
+      </ul>
+    </div>
   </div>
+  <div class="envoltorio rodape-fim"><p>CraviAço Ferragens e Ferramentas, Cravinhos (SP)</p></div>
 </footer>
 
 <a class="flutuante" id="flutuante" href="#" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp" title="Conversar no WhatsApp" tabindex="-1">
@@ -1117,7 +1294,7 @@ const PLURAL = { "Voltagem": "voltagens", "Kit": "kits", "Embalagem": "embalagen
 const parcelaCartao = (p) => { const min = Math.min(...p.vars.map((va) => precoDe(p, va))), n = parcelasMax(min); return `<p class="produto-parcela">${n > 1 ? `ou ${n}x de ${reais(min / n)} sem juros` : "à vista no Pix ou no cartão"}</p>`; };
 const precoCartao = (p) => { const ps = p.vars.map((va) => precoDe(p, va)), min = Math.min(...ps); return min < Math.max(...ps) ? `<small>a partir de</small> ${reais(min)}` : reais(min); };
 const iconeTodos = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6v6H4zM14 5h6v6h-6zM4 15h6v6H4zM14 15h6v6h-6z"/></svg>`;
-$("#categorias").innerHTML = [["todos", "Todos os produtos"], ...CATEGORIAS].map(([id, nome, f]) => `<button class="categoria${f ? "" : " categoria-todos"}" type="button" data-cat="${id}" aria-pressed="${id === "todos"}"><span>${f ? `<img src="${fotoP(f)}" alt="" loading="lazy">` : iconeTodos}</span><span>${nome}</span></button>`).join("");
+$("#categorias").innerHTML = [["todos", "Todos os produtos"], ...CATEGORIAS].map(([id, nome, f]) => `<button class="categoria${f ? "" : " categoria-todos"}" type="button" data-cat="${id}" aria-pressed="${id === "todos"}"><span>${f ? `<img src="img/recorte/${f}.webp" alt="" loading="lazy">` : iconeTodos}</span><span>${nome}</span></button>`).join("");
 
 /* todos os cartoes tem o mesmo desenho; com escolha (cor, tamanho, manivela) o botao abre a pagina do produto */
 const precisaEscolher = (p) => p.vars.length > 1 || p.lados;
@@ -1141,12 +1318,18 @@ const cartao = (p, nivel = 4) => {
 };
 
 /* o ultimo quadro da fileira: o que nao esta no site, a equipe consulta no balcao */
-const fimFileira = (id, nome, n) => `<li class="fim"${n + 1 < 5 ? ` data-falta="${5 - n - 1}"` : ""}>
-    <svg class="fim-icone" aria-hidden="true"><use href="#i-chave"/></svg>
-    <p class="fim-titulo">Mais ${nome.toLowerCase()} na loja</p>
-    <p>Temos outras marcas e modelos na loja. Consulte a nossa equipe pelo WhatsApp.</p>
-    <a class="btn btn-zap" href="${zap(`Olá! Vim pelo site e gostaria de consultar outras opções de ${nome.toLowerCase()}.`)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-zap"/></svg>Consultar</a>
+const fimFileira = (id, nome, n) => {
+  /* a cabeceira da prateleira: os produtos do departamento pendurados na chapa */
+  const pecas = PRODUTOS.filter((p) => p.cat === id && p.id !== "pistola").slice(0, 3);
+  return `<li class="fim"${n + 1 < 5 ? ` data-falta="${5 - n - 1}"` : ""}>
+    <div class="fim-parede" aria-hidden="true">${pecas.map((p) => `<img src="img/recorte/${p.vars[0].f}.webp" alt="" loading="lazy">`).join("")}</div>
+    <div class="fim-texto">
+      <p class="fim-titulo">Mais ${nome.toLowerCase()} na loja</p>
+      <p>Temos outras marcas e modelos na loja. Consulte a nossa equipe pelo WhatsApp.</p>
+      <a class="btn btn-zap" href="${zap(`Olá! Vim pelo site e gostaria de consultar outras opções de ${nome.toLowerCase()}.`)}" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-zap"/></svg>Consultar</a>
+    </div>
   </li>`;
+};
 $("#vitrine").innerHTML = CATEGORIAS.map(([id, nome]) => {
   const lista = PRODUTOS.filter((p) => p.cat === id);
   return `<li class="prateleira" data-cat="${id}">
